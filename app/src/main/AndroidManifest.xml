@@ -17,22 +17,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MathOverView"
-            android:label="@string/title_activity_math_over_view" >
-        </activity>
-        <activity
-            android:name=".PhysicsOverview"
-            android:label="@string/title_activity_physics_overview" >
-        </activity>
-        <activity
-            android:name=".SuperheroOverview"
-            android:label="@string/title_activity_superhero_overview" >
-        </activity>
-        <activity
-            android:name=".MathQ1"
-            android:label="@string/title_activity_math_q1" >
-        </activity>
-        <activity
             android:name=".BetweenQuestion"
             android:label="@string/title_activity_between_question" >
         </activity>

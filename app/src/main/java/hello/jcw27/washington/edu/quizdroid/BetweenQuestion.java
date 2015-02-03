@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 
 public class BetweenQuestion extends ActionBarActivity {
-    ArrayList<String> questions = new ArrayList<String>();
+    ArrayList<String> questions = new ArrayList<>();
     ArrayList<String>answers = new ArrayList<>();
     ArrayList<String> correctAnswers = new ArrayList<>();
     int totalCorrect;
@@ -41,11 +41,11 @@ public class BetweenQuestion extends ActionBarActivity {
         TextView stats = (TextView) findViewById(R.id.stats);
 
         if(topic.equals("math")){
-            title.setText("Math Answer Summary"  + numQuestion);
+            title.setText("Math Answer Summary");
         } else if(topic.equals("physics")){
             title.setText("Physics Answer Summary");
         } else if(topic.equals("superhero")){
-            title.setText("Marvel Superhero Answer Summary");
+            title.setText("Marvel Super Hero Answer Summary");
         }
         userAnswer.setText(answer);
         String corAns = correctAnswers.get(numQuestion - 1);
@@ -53,7 +53,10 @@ public class BetweenQuestion extends ActionBarActivity {
         stats.setText("You have answered " + totalCorrect + " of " + questions.size() + " correct");
 
         Button next = (Button) findViewById(R.id.next);
-
+        if(numQuestion == questions.size()){
+            TextView finish = (TextView) findViewById(R.id.next);
+            finish.setText("Finish");
+        }
         next.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 if(numQuestion < questions.size()){
@@ -70,8 +73,13 @@ public class BetweenQuestion extends ActionBarActivity {
                             intent.putExtra("questionNum", numQuestion);
                             intent.putExtra("total", totalCorrect);
                             intent.putExtra("correctAnswers", correctAnswers);
-                            // intent.putExtra("userAnswer", userAnswer);
                             startActivity(intent);
+                    }
+                } else {
+                    Intent intent = new Intent(BetweenQuestion.this, MainActivity.class);
+
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(intent);
                     }
                 }
 

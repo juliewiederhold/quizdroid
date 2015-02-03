@@ -35,6 +35,9 @@ public class Question extends ActionBarActivity {
         totalCorrect = parentCall.getIntExtra("total", -1);
         correctAnswers = parentCall.getStringArrayListExtra("correctAnswers");
 
+        if(totalCorrect == -1)
+            totalCorrect = 0;
+
         TextView title = (TextView) findViewById(R.id.overViewTitle);
         TextView question = (TextView) findViewById(R.id.question);
         TextView answer1 = (TextView) findViewById(R.id.answer1);
@@ -42,11 +45,11 @@ public class Question extends ActionBarActivity {
         TextView answer3 = (TextView) findViewById(R.id.answer3);
         TextView answer4 = (TextView) findViewById(R.id.answer4);
         if(topic.equals("math")){
-            title.setText("Math Question "+ totalCorrect);
+            title.setText("Math Question ");
         } else if(topic.equals("physics")){
             title.setText("Physics Question ");
         } else if(topic.equals("superhero")) {
-            title.setText("Marvel Superhero Question");
+            title.setText("Marvel Super Hero Question");
         }
         question.setText(questions.get(numQuestion));
         if(numQuestion == 0){
@@ -100,8 +103,6 @@ public class Question extends ActionBarActivity {
                         userAnswer = answers.get(0);
                     else{
                         userAnswer = answers.get(4);
-                        TextView test = (TextView) findViewById(R.id.answer1);
-                        test.setText(userAnswer + "JULIE");
                     }
 
                 }

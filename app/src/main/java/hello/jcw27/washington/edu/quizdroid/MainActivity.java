@@ -61,7 +61,7 @@ public class MainActivity extends ActionBarActivity  {
                     }
 
                     finish();
-                } else if(topic.equals("Marvel Superheroes")) {
+                } else if(topic.equals("Marvel Super Heroes")) {
                     if (intent.resolveActivity(getPackageManager()) != null) {
                         intent.putExtra("topic", "superhero");
                         startActivity(intent);
@@ -77,7 +77,7 @@ public class MainActivity extends ActionBarActivity  {
     private void initList(){
         topicsList.add(createTopic("topics", "Math"));
         topicsList.add(createTopic("topics", "Physics"));
-        topicsList.add(createTopic("topics", "Marvel Superheroes"));
+        topicsList.add(createTopic("topics", "Marvel Super Heroes"));
 
     }
 

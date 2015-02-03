@@ -55,7 +55,7 @@ public class TopicOverview extends ActionBarActivity {
         physicsCorrectAnswers.add("Newton");
         physicsCorrectAnswers.add("v=d/t");
 
-        physicsQuestionsAnswers.add("Netwon");
+        physicsQuestionsAnswers.add("Newton");
         physicsQuestionsAnswers.add("Chingy");
         physicsQuestionsAnswers.add("Edgar Allan Poe");
         physicsQuestionsAnswers.add("None of the above");
@@ -63,7 +63,7 @@ public class TopicOverview extends ActionBarActivity {
         physicsQuestionsAnswers.add("e=mc^2");
         physicsQuestionsAnswers.add("v=d/t");
         physicsQuestionsAnswers.add("x^2");
-        physicsQuestionsAnswers.add("Does Not exist");
+        physicsQuestionsAnswers.add("Does Not Exist");
 
         superheroQuestions.add("Which of these is a superhero?");
         superheroQuestionsAnswers.add("Superman");
@@ -95,7 +95,7 @@ public class TopicOverview extends ActionBarActivity {
             descrip.setText("Physics Overview description goes right here. Wow this is an excellent overview. PHYSICS!");
             numQ.setText("Number of questions: 2");
         } else if(topic.equals("superhero")){
-            title.setText("Marvel Superhero Overview");
+            title.setText("Marvel Super Hero Overview");
             descrip.setText("Marvel Superhero Overview description goes right here. Wow this is an excellent overview. SUPERHERO!");
             numQ.setText("Number of questions: 2");
         }
