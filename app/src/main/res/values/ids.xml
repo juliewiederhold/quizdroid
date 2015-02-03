@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="mathQ1" type="id" />
+    <item name="mathOp1" type="id" />
+    <item name="mathOp2" type="id" />
+    <item name="mathOp3" type="id" />
+    <item name="mathOp4" type="id" />
+    <item name="submit" type="id" />
+</resources>
