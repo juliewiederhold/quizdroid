@@ -12,8 +12,8 @@
         android:orientation="vertical"
         android:id="@+id/radiogroup"
         android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
         <RadioButton android:id="@+id/answer1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,15 +36,6 @@
             android:checked="false" />
     </RadioGroup>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:id="@+id/submit"
-        android:layout_below="@+id/radiogroup"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="42dp" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,5 +53,14 @@
         android:id="@+id/question"
         android:layout_below="@+id/overViewTitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="47dp" />
+        android:layout_marginTop="51dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/submitButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="76dp" />
 </RelativeLayout>

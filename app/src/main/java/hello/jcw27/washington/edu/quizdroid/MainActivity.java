@@ -45,7 +45,7 @@ public class MainActivity extends ActionBarActivity  {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String topic = ((TextView) view).getText().toString();
-                Intent intent = new Intent(MainActivity.this, TopicOverview.class);
+                Intent intent = new Intent(MainActivity.this, Manager.class);
                 if(topic.equals("Math")){
 
                     if (intent.resolveActivity(getPackageManager()) != null) {
@@ -68,8 +68,6 @@ public class MainActivity extends ActionBarActivity  {
                     }
 
                 }
-
-
             }
         });
     }

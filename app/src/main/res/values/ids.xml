@@ -6,4 +6,6 @@
     <item name="mathOp3" type="id" />
     <item name="mathOp4" type="id" />
     <item name="submit" type="id" />
+    <item name="begin" type="id" />
+    <item name="beginButton" type="id" />
 </resources>
