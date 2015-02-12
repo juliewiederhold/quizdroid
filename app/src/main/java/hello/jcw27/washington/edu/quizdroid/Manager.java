@@ -237,6 +237,7 @@ public class Manager extends ActionBarActivity {
                             totalCorrect++;
                         }
                         FragmentTransaction transaction = getFragmentManager().beginTransaction().replace(R.id.container, new BetweenQuestions());
+                        transaction.setCustomAnimations(R.animator.slide_left, R.animator.slide_right);
                         transaction.addToBackStack("questions");
                         transaction.commit();
                     }
@@ -286,6 +287,7 @@ public class Manager extends ActionBarActivity {
                 public void onClick(View v){
                     if(numQuestion < questions.size()){
                         FragmentTransaction transaction = getFragmentManager().beginTransaction().replace(R.id.container, new Questions());
+                        transaction.setCustomAnimations(R.animator.slide_left, R.animator.slide_right);
                         transaction.addToBackStack("betweenQuestion" + numQuestion);
                         transaction.commit();
                     } else {
@@ -333,6 +335,7 @@ public class Manager extends ActionBarActivity {
             beginButton.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v){
                     FragmentTransaction transaction = getFragmentManager().beginTransaction().replace(R.id.container, new Questions());
+                    transaction.setCustomAnimations(R.animator.slide_left, R.animator.slide_right);
                     transaction.addToBackStack("topicOverview");
                     transaction.commit();
                 }
