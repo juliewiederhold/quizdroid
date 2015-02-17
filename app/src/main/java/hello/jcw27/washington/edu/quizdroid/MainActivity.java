@@ -43,11 +43,11 @@ public class MainActivity extends ActionBarActivity  {
 
                 String topic = ((TextView) view).getText().toString();
 
-                QuizApp quiz = new QuizApp();
+               // QuizApp quiz = new QuizApp();
                 //Intent intent = new Intent(MainActivity.this, Manager.class);
                 if(topic.equals("Math")){
+                    QuizApp.getInstance().setCurrTopic(0);
 
-                    quiz.setCurrTopic(0);
                    /* if (intent.resolveActivity(getPackageManager()) != null) {
                         intent.putExtra("topic", "math");
                         startActivity(intent);
@@ -55,7 +55,7 @@ public class MainActivity extends ActionBarActivity  {
 
                     finish();*/
                 } else if(topic.equals("Physics")){
-                    quiz.setCurrTopic(1);
+                    QuizApp.getInstance().setCurrTopic(1);
                    /* if (intent.resolveActivity(getPackageManager()) != null) {
                         intent.putExtra("topic", "physics");
                         startActivity(intent);
@@ -63,13 +63,14 @@ public class MainActivity extends ActionBarActivity  {
 
                     finish();*/
                 } else if(topic.equals("Marvel Super Heroes")) {
-                    quiz.setCurrTopic(2);
-                   /* if (intent.resolveActivity(getPackageManager()) != null) {
+                    QuizApp.getInstance().setCurrTopic(2);
+                    /*if (intent.resolveActivity(getPackageManager()) != null) {
                         intent.putExtra("topic", "superhero");
                         startActivity(intent);
                     }*/
 
                 }
+                quiz.setNumQuestion(0);
             }
         });
     }

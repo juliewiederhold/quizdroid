@@ -11,8 +11,6 @@ public interface TopicRepository {
 
     public String getCorrectAnswer();
 
-    public String toString();
-
     public ArrayList<String> getAnswerList();
 
     public String getTopic();

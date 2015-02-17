@@ -9,31 +9,32 @@ import java.util.ArrayList;
 public class Quiz implements Serializable {
 
     private String question;
-    private String correctAnswer;
+    private int correctAnswer;
     private ArrayList<String> answerList = new ArrayList<>();
 
-    public Quiz(String question, String correctAnswer, String answer1, String answer2, String answer3){
+    public Quiz(){}
+
+    public void setQuestion(String question){
         this.question = question;
-        this.correctAnswer = correctAnswer;
-        answerList.add(answer1);
-        answerList.add(answer2);
-        answerList.add(correctAnswer);
-        answerList.add(answer3);
     }
 
     public String getQuestion(){
         return question;
     }
 
-    public String getCorrectAnswer(){
-        return correctAnswer;
+    public void setCorrectAnswer(int num){
+        this.correctAnswer = num;
     }
 
-    public String toString(){
-        return question;
+    public int getCorrectAnswer(){
+        return correctAnswer;
     }
 
     public ArrayList<String> getAnswerList(){
         return answerList;
+    }
+
+    public void addAnswer(String answer){
+        answerList.add(answer);
     }
 }

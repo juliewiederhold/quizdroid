@@ -12,13 +12,18 @@ public class Topic implements Serializable{
     private String description;
     private ArrayList<Quiz> questionList = new ArrayList<>();
 
-    public Topic(String topic, String description){
+    public Topic(){}
+
+    public void setTopic(String topic){
         this.topic = topic;
-        this.description = description;
     }
 
     public String getTopic(){
         return topic;
+    }
+
+    public void setDescription(String description){
+        this.description = description;
     }
 
     public String getDescription(){
