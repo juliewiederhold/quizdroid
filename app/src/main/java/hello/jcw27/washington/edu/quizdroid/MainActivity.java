@@ -42,7 +42,7 @@ public class MainActivity extends ActionBarActivity  {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                String topic = ((TextView) view).getText().toString();
+                String topic = ((TextView) view.findViewById(android.R.id.text1)).getText().toString();
                 Intent intent = new Intent(MainActivity.this, Manager.class);
                 if(topic.equals("Math")){
                     QuizApp.getInstance().setCurrTopic(0);
@@ -60,18 +60,16 @@ public class MainActivity extends ActionBarActivity  {
     }
 
     private void initList(){
-        topicsList.add(createTopic("topics", "Math"));
-        topicsList.add(createTopic("topics", "Physics"));
-        topicsList.add(createTopic("topics", "Marvel Super Heroes"));
-        topicsList.add(createTopic("description", "The subject everyone hates."));
-        topicsList.add(createTopic("description", "Even worse than math."));
-        topicsList.add(createTopic("description", "Making spandex cool since 1939"));
+        topicsList.add(createTopic("topics", "Math", "description", "The subject everyone hates."));
+        topicsList.add(createTopic("topics", "Physics", "description", "Even worse than math."));
+        topicsList.add(createTopic("topics", "Marvel Super Heroes", "description", "Making spandex cool since 1939"));
 
     }
 
-    private HashMap<String, String> createTopic(String key, String value){
+    private HashMap<String, String> createTopic(String key1, String value1, String key2, String value2){
         HashMap<String, String> topic = new HashMap<>();
-        topic.put(key, value);
+        topic.put(key1, value1);
+        topic.put(key2, value2);
         return topic;
     }
 

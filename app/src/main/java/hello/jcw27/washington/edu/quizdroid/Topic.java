@@ -20,8 +20,9 @@ public class Topic implements Serializable{
         return currentQuestionUserIsOn;
     }
 
-    public void incrementCurrentQuestionUserIsOn(){
-        currentQuestionUserIsOn++;
+    public int setCurrentQuestionUserIsOn(int num){
+        currentQuestionUserIsOn = num;
+        return currentQuestionUserIsOn;
     }
 
     public void setTopic(String topic){

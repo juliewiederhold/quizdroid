@@ -31,6 +31,7 @@ public class QuizApp extends Application implements TopicRepository
         Topic math = new Topic();
         math.setTopic("Math");
         math.setDescription("Math Overview description goes right here. Wow this is an excellent overview. MATH!");
+        math.setDescriptionShort("The subject everyone hates.");
 
         Quiz mq1 = new Quiz();
         mq1.setQuestion("1 + 1 = ?");
@@ -57,6 +58,7 @@ public class QuizApp extends Application implements TopicRepository
         Topic physics = new Topic();
         physics.setTopic("Physics");
         physics.setDescription("Physics Overview description goes right here. Wow this is an excellent overview. PHYSICS!");
+        physics.setDescriptionShort("Even worse than math.");
 
         Quiz pq1 = new Quiz();
         pq1.setQuestion("Who came up with Newtons 3 laws of physics?");
@@ -85,6 +87,7 @@ public class QuizApp extends Application implements TopicRepository
         Topic superhero = new Topic();
         superhero.setTopic("Marvel Super Heroes");
         superhero.setDescription("Marvel Super Hero Overview description goes right here. Wow this is an excellent overview. SUPERHERO!");
+        superhero.setDescriptionShort("Making spandex cool since 1939");
 
         Quiz sq1 = new Quiz();
         sq1.setQuestion("Which of these is a superhero?");
@@ -162,8 +165,8 @@ public class QuizApp extends Application implements TopicRepository
         return topicList.get(currTopic).getCurrentQuestionUserIsOn();
     }
 
-    public void incrementCurrentQuestionUserIsOn(){
-        topicList.get(currTopic).incrementCurrentQuestionUserIsOn();
+    public int setCurrentQuestionUserIsOn(int num){
+        return topicList.get(currTopic).setCurrentQuestionUserIsOn(num);
     }
 
     public int totalQuestions(){
@@ -184,5 +187,9 @@ public class QuizApp extends Application implements TopicRepository
 
     public String getDescriptionShort(){
         return topicList.get(currTopic).getDescriptionShort();
+    }
+
+    public void setDescriptionShort(String descriptionShort){
+         topicList.get(currTopic).setDescriptionShort(descriptionShort);
     }
 }

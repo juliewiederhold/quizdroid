@@ -36,7 +36,8 @@ public class Manager extends ActionBarActivity implements Serializable{
 
         topic = QuizApp.getInstance().getTopic();
         totalQuestions = QuizApp.getInstance().totalQuestions();
-        numQuestion = QuizApp.getInstance().getCurrentQuestionUserIsOn();
+        numQuestion = QuizApp.getInstance().setCurrentQuestionUserIsOn(0);
+        //numQuestion = QuizApp.getInstance().getCurrentQuestionUserIsOn();
         questions = QuizApp.getInstance().getQuestionList();
         answers = QuizApp.getInstance().getAnswerList();
         totalCorrect = 0;
@@ -171,8 +172,7 @@ public class Manager extends ActionBarActivity implements Serializable{
             correct.setText("The answer is: " + corAns);
             stats.setText("You have answered " + totalCorrect + " of " + questions.size() + " correct");
 
-            QuizApp.getInstance().incrementCurrentQuestionUserIsOn();
-            numQuestion = QuizApp.getInstance().getCurrentQuestionUserIsOn();
+            numQuestion = QuizApp.getInstance().setCurrentQuestionUserIsOn(numQuestion + 1);
 
             Button next = (Button) rootView.findViewById(R.id.next);
             if(numQuestion == questions.size()){
@@ -209,6 +209,8 @@ public class Manager extends ActionBarActivity implements Serializable{
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = (ViewGroup) inflater.inflate(R.layout.activity_topic_overview, container, false);
+
+
 
             TextView title = (TextView) rootView.findViewById(R.id.overViewTitle);
             TextView descrip = (TextView) rootView.findViewById(R.id.overViewDescrip);

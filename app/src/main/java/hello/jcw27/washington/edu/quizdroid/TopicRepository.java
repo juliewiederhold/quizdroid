@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface TopicRepository {
     public int getCurrentQuestionUserIsOn();
 
-    public void incrementCurrentQuestionUserIsOn();
+    public int setCurrentQuestionUserIsOn(int num);
 
     public void setCorrectAnswer(int num);
 
