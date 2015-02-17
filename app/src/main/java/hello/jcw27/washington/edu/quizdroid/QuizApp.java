@@ -125,6 +125,11 @@ public class QuizApp extends Application implements TopicRepository
         this.currTopic = num;
     }
 
+    public String getTopicAt(int num){
+        return topicList.get(num).getTopic();
+
+    }
+
     public void setCorrectAnswer(int num){
         getQuestion(topicList.get(currTopic).totalQuestions()).setCorrectAnswer(num);
     }
@@ -185,8 +190,8 @@ public class QuizApp extends Application implements TopicRepository
         topicList.get(currTopic).getQuestion(totalQuestions()).addAnswer(answer);
     }*/
 
-    public String getDescriptionShort(){
-        return topicList.get(currTopic).getDescriptionShort();
+    public String getDescriptionShortAt(int num){
+        return topicList.get(num).getDescriptionShort();
     }
 
     public void setDescriptionShort(String descriptionShort){

@@ -36,5 +36,5 @@ public interface TopicRepository {
 
     public ArrayList<Quiz> getQuestionList();
 
-    public String getDescriptionShort();
+   // public String getDescriptionShort();
 }

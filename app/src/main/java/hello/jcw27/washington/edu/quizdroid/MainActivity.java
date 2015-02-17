@@ -60,10 +60,10 @@ public class MainActivity extends ActionBarActivity  {
     }
 
     private void initList(){
-        topicsList.add(createTopic("topics", "Math", "description", "The subject everyone hates."));
-        topicsList.add(createTopic("topics", "Physics", "description", "Even worse than math."));
-        topicsList.add(createTopic("topics", "Marvel Super Heroes", "description", "Making spandex cool since 1939"));
-
+        for(int i = 0; i < 3; i++){
+            topicsList.add(createTopic("topics", QuizApp.getInstance().getTopicAt(i),
+                    "description", QuizApp.getInstance().getDescriptionShortAt(i)));
+        }
     }
 
     private HashMap<String, String> createTopic(String key1, String value1, String key2, String value2){
