@@ -70,7 +70,6 @@ public class MainActivity extends ActionBarActivity  {
                     }*/
 
                 }
-                quiz.setNumQuestion(0);
             }
         });
     }

@@ -30,6 +30,11 @@ public class Topic implements Serializable{
         return description;
     }
 
+
+    public int getNumQuestion(){
+        return questionList.size();
+    }
+
     public void addQuestion(Quiz question){
         questionList.add(question);
     }

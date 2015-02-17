@@ -26,8 +26,8 @@ public class Quiz implements Serializable {
         this.correctAnswer = num;
     }
 
-    public int getCorrectAnswer(){
-        return correctAnswer;
+    public String getCorrectAnswer(){
+        return answerList.get(correctAnswer);
     }
 
     public ArrayList<String> getAnswerList(){

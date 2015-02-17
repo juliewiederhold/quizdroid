@@ -9,14 +9,13 @@ public class QuizApp extends Application implements TopicRepository
 {
     private ArrayList<Topic> topicList = new ArrayList<>();
     private int currTopic;
-    private int numQuestion;
+
 
     private static QuizApp instance;
     public QuizApp()
     {
         if (instance == null){
             instance = this;
-            initialize();
         }
         else {
             Log.e("QuizApp", "MORE THAN ONE CONSTRUCTED!");
@@ -62,33 +61,49 @@ public class QuizApp extends Application implements TopicRepository
         Quiz pq1 = new Quiz();
         pq1.setQuestion("Who came up with Newtons 3 laws of physics?");
 
-        pq1.addAnswer();
+        pq1.addAnswer("Edgar Allen Poe");
         pq1.addAnswer("Chingy");
-        pq1.addAnswer("7");
+        pq1.addAnswer("None of the above");
         pq1.addAnswer("Newton");
-        pq1.setCorrectAnswer(4);
+        pq1.setCorrectAnswer(3);
         physics.addQuestion(pq1);
 
         Quiz pq2 = new Quiz();
         pq2.setQuestion("What is the equation for velocity");
 
-        pq2.addAnswer("7");
-        pq2.addAnswer("10");
-        pq2.addAnswer("12");
-        pq2.addAnswer("6");
-        pq2.setCorrectAnswer(1);
+        pq2.addAnswer("e=mc^2");
+        pq2.addAnswer("x^2");
+        pq2.addAnswer("v=d/t");
+        pq2.addAnswer("Does not Exist");
+        pq2.setCorrectAnswer(2);
         physics.addQuestion(pq2);
 
-        physics.addQuestion(new Quiz(
-                    , "Chingy", "Edgar Allen Poe", "None of the above"));
-        physics.addQuestion(new Quiz(, "v=d/t", "e=c^2", "x^2", "Does not Exist"));
         topicList.add(physics);
 
         Topic superhero = new Topic();
         superhero.setTopic("Marvel Super Heroes");
         superhero.setDescription("Marvel Super Hero Overview description goes right here. Wow this is an excellent overview. SUPERHERO!");
-        superhero.addQuestion(new Quiz("Which of these is a superhero?", "Superman", "Cartman", "Big Bird", "Potato Man"));
-        superhero.addQuestion(new Quiz("Which of these is not superhero?", "Regina George", "The Flash", "Superman", "BATMAN"));
+
+        Quiz sq1 = new Quiz();
+        sq1.setQuestion("Which of these is a superhero?");
+
+        sq1.addAnswer("Superman");
+        sq1.addAnswer("Cartman");
+        sq1.addAnswer("Big Bird");
+        sq1.addAnswer("Potato Man");
+        sq1.setCorrectAnswer(0);
+        superhero.addQuestion(sq1);
+
+        Quiz sq2 = new Quiz();
+        sq2.setQuestion("Which of these is not superhero?");
+
+        sq2.addAnswer("Regina George");
+        sq2.addAnswer("The Flash");
+        sq2.addAnswer("Superman");
+        sq2.addAnswer("BATMAN");
+        sq2.setCorrectAnswer(2);
+        superhero.addQuestion(sq2);
+
         topicList.add(superhero);
     }
 
@@ -96,42 +111,65 @@ public class QuizApp extends Application implements TopicRepository
         this.currTopic = num;
     }
 
-    public void setNumQuestion(int num){
-        this.numQuestion = num;
-    }
+
 
     @Override
     public void onCreate()
     {
         super.onCreate();
+        initialize();
         Log.i("QuizApp", "QuizApp is accessed");
     }
 
+    public void setCorrectAnswer(int num){
+        getQuestion(topicList.get(currTopic).getNumQuestion()).setCorrectAnswer(num);
+    }
+
     public String getCorrectAnswer(){
-        return correctAnswer;
+        return getQuestion(topicList.get(currTopic).getNumQuestion()).getCorrectAnswer();
     }
 
     public ArrayList<String> getAnswerList(){
-        return getQuestion(numQuestion).getAnswerList();
+        return getQuestion(topicList.get(currTopic).getNumQuestion()).getAnswerList();
+    }
+
+    public void setTopic(String topic){
+        topicList.get(currTopic).setTopic(topic);
     }
 
     public String getTopic(){
         return topicList.get(currTopic).getTopic();
     }
 
+    public void setDescription(String description){
+        topicList.get(currTopic).setDescription(description);
+    }
+
     public String getDescription(){
         return topicList.get(currTopic).getDescription();
+    }
+
+    public void setQuestion(String question){
+        topicList.get(currTopic).getQuestion(getNumQuestion()).setQuestion(question);
     }
 
     public void addQuestion(Quiz question){
         topicList.get(currTopic).addQuestion(question);
     }
 
+    public int getNumQuestion(){
+        return topicList.get(currTopic).getNumQuestion();
+    }
+
     public Quiz getQuestion(int index){
         return topicList.get(currTopic).getQuestion(index);
     }
 
-    public ArrayList<Quiz> getQuestionList(){
+    public ArrayList<Quiz> getQuestionList() {
         return topicList.get(currTopic).getQuestionList();
+    }
+
+    public void addAnswer(String answer){
+        topicList.get(currTopic).getQuestion(getNumQuestion()).addAnswer(answer);
     }
 }

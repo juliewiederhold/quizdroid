@@ -1,11 +1,11 @@
 package hello.jcw27.washington.edu.quizdroid;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -33,7 +34,12 @@ public class Manager extends ActionBarActivity implements Serializable{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
 
-        Intent parentCall = getIntent();
+        topic = QuizApp.getInstance().getTopic();
+        questions = QuizApp.getInstance().getQuestionList();
+        answers = QuizApp.getInstance().getAnswerList();
+        totalCorrect = 0;
+        numQuestion = QuizApp.getInstance().getNumQuestion();
+        /*Intent parentCall = getIntent();
         topic = parentCall.getStringExtra("topic");
 
         if(topic.equals("math")){
@@ -47,12 +53,7 @@ public class Manager extends ActionBarActivity implements Serializable{
             t = new Topic("Marvel Super Heroes", "Marvel Super Hero Overview description goes right here. Wow this is an excellent overview. SUPERHERO!");
             t.addQuestion(new Quiz("Which of these is a superhero?", "Superman", "Cartman", "Big Bird", "Potato Man"));
             t.addQuestion(new Quiz("Which of these is not superhero?", "Regina George", "The Flash", "Superman", "BATMAN"));
-        }
-
-        numQuestion = 0;
-        totalCorrect = 0;
-        questions = t.getQuestionList();
-        answers = t.getQuestion(numQuestion).getAnswerList();
+        }*/
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction =
