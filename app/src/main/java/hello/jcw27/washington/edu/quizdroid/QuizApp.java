@@ -16,6 +16,7 @@ public class QuizApp extends Application implements TopicRepository
     {
         if (instance == null){
             instance = this;
+           // initialize();
         }
         else {
             Log.e("QuizApp", "MORE THAN ONE CONSTRUCTED!");
@@ -40,7 +41,6 @@ public class QuizApp extends Application implements TopicRepository
         mq1.addAnswer("7");
         mq1.addAnswer("i");
         mq1.setCorrectAnswer(0);
-        math.addQuestion(mq1);
 
         Quiz mq2 = new Quiz();
         mq2.setQuestion("6 + 4 = ?");
@@ -50,9 +50,10 @@ public class QuizApp extends Application implements TopicRepository
         mq2.addAnswer("12");
         mq2.addAnswer("6");
         mq2.setCorrectAnswer(1);
+
+        math.addQuestion(mq1);
         math.addQuestion(mq2);
         topicList.add(math);
-
 
         Topic physics = new Topic();
         physics.setTopic("Physics");
@@ -66,16 +67,18 @@ public class QuizApp extends Application implements TopicRepository
         pq1.addAnswer("None of the above");
         pq1.addAnswer("Newton");
         pq1.setCorrectAnswer(3);
-        physics.addQuestion(pq1);
+
 
         Quiz pq2 = new Quiz();
         pq2.setQuestion("What is the equation for velocity");
 
-        pq2.addAnswer("e=mc^2");
+        pq2.addAnswer("e=mc^2 JULIE");
         pq2.addAnswer("x^2");
         pq2.addAnswer("v=d/t");
         pq2.addAnswer("Does not Exist");
         pq2.setCorrectAnswer(2);
+
+        physics.addQuestion(pq1);
         physics.addQuestion(pq2);
 
         topicList.add(physics);
@@ -92,7 +95,7 @@ public class QuizApp extends Application implements TopicRepository
         sq1.addAnswer("Big Bird");
         sq1.addAnswer("Potato Man");
         sq1.setCorrectAnswer(0);
-        superhero.addQuestion(sq1);
+
 
         Quiz sq2 = new Quiz();
         sq2.setQuestion("Which of these is not superhero?");
@@ -102,16 +105,11 @@ public class QuizApp extends Application implements TopicRepository
         sq2.addAnswer("Superman");
         sq2.addAnswer("BATMAN");
         sq2.setCorrectAnswer(2);
-        superhero.addQuestion(sq2);
 
+        superhero.addQuestion(sq1);
+        superhero.addQuestion(sq2);
         topicList.add(superhero);
     }
-
-    public void setCurrTopic(int num){
-        this.currTopic = num;
-    }
-
-
 
     @Override
     public void onCreate()
@@ -121,16 +119,20 @@ public class QuizApp extends Application implements TopicRepository
         Log.i("QuizApp", "QuizApp is accessed");
     }
 
+    public void setCurrTopic(int num){
+        this.currTopic = num;
+    }
+
     public void setCorrectAnswer(int num){
-        getQuestion(topicList.get(currTopic).getNumQuestion()).setCorrectAnswer(num);
+        getQuestion(topicList.get(currTopic).totalQuestions()).setCorrectAnswer(num);
     }
 
     public String getCorrectAnswer(){
-        return getQuestion(topicList.get(currTopic).getNumQuestion()).getCorrectAnswer();
+        return getQuestion(topicList.get(currTopic).totalQuestions()).getCorrectAnswer();
     }
 
     public ArrayList<String> getAnswerList(){
-        return getQuestion(topicList.get(currTopic).getNumQuestion()).getAnswerList();
+        return getQuestion(getCurrentQuestionUserIsOn()).getAnswerList();
     }
 
     public void setTopic(String topic){
@@ -150,15 +152,23 @@ public class QuizApp extends Application implements TopicRepository
     }
 
     public void setQuestion(String question){
-        topicList.get(currTopic).getQuestion(getNumQuestion()).setQuestion(question);
+        topicList.get(currTopic).getQuestion(totalQuestions()).setQuestion(question);
     }
 
     public void addQuestion(Quiz question){
         topicList.get(currTopic).addQuestion(question);
     }
 
-    public int getNumQuestion(){
-        return topicList.get(currTopic).getNumQuestion();
+    public int getCurrentQuestionUserIsOn(){
+        return topicList.get(currTopic).getCurrentQuestionUserIsOn();
+    }
+
+    public void incrementCurrentQuestionUserIsOn(){
+        topicList.get(currTopic).incrementCurrentQuestionUserIsOn();
+    }
+
+    public int totalQuestions(){
+        return topicList.get(currTopic).totalQuestions();
     }
 
     public Quiz getQuestion(int index){
@@ -170,6 +180,6 @@ public class QuizApp extends Application implements TopicRepository
     }
 
     public void addAnswer(String answer){
-        topicList.get(currTopic).getQuestion(getNumQuestion()).addAnswer(answer);
+        topicList.get(currTopic).getQuestion(totalQuestions()).addAnswer(answer);
     }
 }

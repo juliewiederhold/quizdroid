@@ -42,34 +42,19 @@ public class MainActivity extends ActionBarActivity  {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String topic = ((TextView) view).getText().toString();
-
-               // QuizApp quiz = new QuizApp();
-                //Intent intent = new Intent(MainActivity.this, Manager.class);
+                //QuizApp.getInstance().initialize();
+                Intent intent = new Intent(MainActivity.this, Manager.class);
                 if(topic.equals("Math")){
                     QuizApp.getInstance().setCurrTopic(0);
-
-                   /* if (intent.resolveActivity(getPackageManager()) != null) {
-                        intent.putExtra("topic", "math");
-                        startActivity(intent);
-                    }
-
-                    finish();*/
                 } else if(topic.equals("Physics")){
                     QuizApp.getInstance().setCurrTopic(1);
-                   /* if (intent.resolveActivity(getPackageManager()) != null) {
-                        intent.putExtra("topic", "physics");
-                        startActivity(intent);
-                    }
-
-                    finish();*/
                 } else if(topic.equals("Marvel Super Heroes")) {
                     QuizApp.getInstance().setCurrTopic(2);
-                    /*if (intent.resolveActivity(getPackageManager()) != null) {
-                        intent.putExtra("topic", "superhero");
-                        startActivity(intent);
-                    }*/
-
                 }
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+                finish();
             }
         });
     }

@@ -6,6 +6,10 @@ import java.util.ArrayList;
  * Created by Julie on 2/16/15.
  */
 public interface TopicRepository {
+    public int getCurrentQuestionUserIsOn();
+
+    public void incrementCurrentQuestionUserIsOn();
+
     public void setCorrectAnswer(int num);
 
     public String getCorrectAnswer();
@@ -22,7 +26,7 @@ public interface TopicRepository {
 
     public String getDescription();
 
-    public int getNumQuestion();
+    public int totalQuestions();
 
     public void addQuestion(Quiz question);
 

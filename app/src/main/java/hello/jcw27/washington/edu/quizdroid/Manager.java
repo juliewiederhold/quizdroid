@@ -23,11 +23,11 @@ import java.util.ArrayList;
 public class Manager extends ActionBarActivity implements Serializable{
     public static String topic;
     public static String userAnswer;
-    public static Topic t;
     public static ArrayList<Quiz> questions = new ArrayList<>();
     public static ArrayList<String> answers = new ArrayList<>();
     public static int totalCorrect;
     public static int numQuestion;
+    public static int totalQuestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,25 +35,11 @@ public class Manager extends ActionBarActivity implements Serializable{
         setContentView(R.layout.activity_manager);
 
         topic = QuizApp.getInstance().getTopic();
+        totalQuestions = QuizApp.getInstance().totalQuestions();
+        numQuestion = QuizApp.getInstance().getCurrentQuestionUserIsOn();
         questions = QuizApp.getInstance().getQuestionList();
         answers = QuizApp.getInstance().getAnswerList();
         totalCorrect = 0;
-        numQuestion = QuizApp.getInstance().getNumQuestion();
-        /*Intent parentCall = getIntent();
-        topic = parentCall.getStringExtra("topic");
-
-        if(topic.equals("math")){
-
-        } else if(topic.equals("physics")){
-            t = new Topic("Physics", "Physics Overview description goes right here. Wow this is an excellent overview. PHYSICS!");
-            t.addQuestion(new Quiz("Who came up with Newtons 3 laws of physics?",
-                    "Newton", "Chingy", "Edgar Allen Poe", "None of the above"));
-            t.addQuestion(new Quiz("What is the equation for velocity", "v=d/t", "e=c^2", "x^2", "Does not Exist"));
-        } else if(topic.equals("superhero")){
-            t = new Topic("Marvel Super Heroes", "Marvel Super Hero Overview description goes right here. Wow this is an excellent overview. SUPERHERO!");
-            t.addQuestion(new Quiz("Which of these is a superhero?", "Superman", "Cartman", "Big Bird", "Potato Man"));
-            t.addQuestion(new Quiz("Which of these is not superhero?", "Regina George", "The Flash", "Superman", "BATMAN"));
-        }*/
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction =
@@ -141,7 +127,7 @@ public class Manager extends ActionBarActivity implements Serializable{
             }
 
             question.setText((CharSequence) questions.get(numQuestion).getQuestion());
-            answers = t.getQuestion(numQuestion).getAnswerList();
+            answers = QuizApp.getInstance().getAnswerList(); //t.getQuestion(numQuestion).getAnswerList();
             answer1.setText(answers.get(0));
             answer2.setText(answers.get(1));
             answer3.setText(answers.get(2));
@@ -196,7 +182,9 @@ public class Manager extends ActionBarActivity implements Serializable{
             correct.setText("The answer is: " + corAns);
             stats.setText("You have answered " + totalCorrect + " of " + questions.size() + " correct");
 
-            numQuestion++;
+            QuizApp.getInstance().incrementCurrentQuestionUserIsOn();
+            numQuestion = QuizApp.getInstance().getCurrentQuestionUserIsOn();
+
             Button next = (Button) rootView.findViewById(R.id.next);
             if(numQuestion == questions.size()){
                 TextView finish = (TextView) rootView.findViewById(R.id.next);
@@ -237,9 +225,9 @@ public class Manager extends ActionBarActivity implements Serializable{
             TextView descrip = (TextView) rootView.findViewById(R.id.overViewDescrip);
             TextView numQ = (TextView) rootView.findViewById(R.id.overViewNumQ);
 
-            title.setText(t.getTopic());
-            descrip.setText(t.getDescription());
-            numQ.setText("Number of questions: " + numQuestion);
+            title.setText(QuizApp.getInstance().getTopic());
+            descrip.setText(QuizApp.getInstance().getDescription());
+            numQ.setText("Number of questions: " + totalQuestions);
 
             Button beginButton = (Button) rootView.findViewById(R.id.beginButton);
             beginButton.setOnClickListener(new View.OnClickListener(){

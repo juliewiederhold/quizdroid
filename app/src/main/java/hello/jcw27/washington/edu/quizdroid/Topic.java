@@ -10,9 +10,18 @@ public class Topic implements Serializable{
 
     private String topic;
     private String description;
+    private int currentQuestionUserIsOn = 0;
     private ArrayList<Quiz> questionList = new ArrayList<>();
 
     public Topic(){}
+
+    public int getCurrentQuestionUserIsOn(){
+        return currentQuestionUserIsOn;
+    }
+
+    public void incrementCurrentQuestionUserIsOn(){
+        currentQuestionUserIsOn++;
+    }
 
     public void setTopic(String topic){
         this.topic = topic;
@@ -31,7 +40,7 @@ public class Topic implements Serializable{
     }
 
 
-    public int getNumQuestion(){
+    public int totalQuestions(){
         return questionList.size();
     }
 
