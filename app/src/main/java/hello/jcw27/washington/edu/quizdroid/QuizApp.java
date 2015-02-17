@@ -16,7 +16,6 @@ public class QuizApp extends Application implements TopicRepository
     {
         if (instance == null){
             instance = this;
-           // initialize();
         }
         else {
             Log.e("QuizApp", "MORE THAN ONE CONSTRUCTED!");
@@ -72,7 +71,7 @@ public class QuizApp extends Application implements TopicRepository
         Quiz pq2 = new Quiz();
         pq2.setQuestion("What is the equation for velocity");
 
-        pq2.addAnswer("e=mc^2 JULIE");
+        pq2.addAnswer("e=mc^2");
         pq2.addAnswer("x^2");
         pq2.addAnswer("v=d/t");
         pq2.addAnswer("Does not Exist");
@@ -181,5 +180,9 @@ public class QuizApp extends Application implements TopicRepository
 
     public void addAnswer(String answer){
         topicList.get(currTopic).getQuestion(totalQuestions()).addAnswer(answer);
+    }
+
+    public String getDescriptionShort(){
+        return topicList.get(currTopic).getDescriptionShort();
     }
 }

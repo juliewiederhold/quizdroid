@@ -35,4 +35,6 @@ public interface TopicRepository {
     public Quiz getQuestion(int index);
 
     public ArrayList<Quiz> getQuestionList();
+
+    public String getDescriptionShort();
 }

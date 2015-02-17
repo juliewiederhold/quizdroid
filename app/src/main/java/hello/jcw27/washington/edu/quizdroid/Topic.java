@@ -9,7 +9,8 @@ import java.util.ArrayList;
 public class Topic implements Serializable{
 
     private String topic;
-    private String description;
+    private String descriptionLong;
+    private String descriptionShort;
     private int currentQuestionUserIsOn = 0;
     private ArrayList<Quiz> questionList = new ArrayList<>();
 
@@ -32,11 +33,19 @@ public class Topic implements Serializable{
     }
 
     public void setDescription(String description){
-        this.description = description;
+        this.descriptionLong = description;
     }
 
     public String getDescription(){
-        return description;
+        return descriptionLong;
+    }
+
+    public void setDescriptionShort(String description){
+        this.descriptionShort = description;
+    }
+
+    public String getDescriptionShort(){
+        return descriptionShort;
     }
 
 

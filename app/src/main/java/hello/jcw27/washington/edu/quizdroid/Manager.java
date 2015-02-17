@@ -118,13 +118,7 @@ public class Manager extends ActionBarActivity implements Serializable{
             TextView answer3 = (TextView) rootView.findViewById(R.id.answer3);
             TextView answer4 = (TextView) rootView.findViewById(R.id.answer4);
 
-            if(topic.equals("math")){
-                title.setText("Math");
-            } else if(topic.equals("physics")){
-                title.setText("Physics Overview");
-            } else if(topic.equals("superhero")){
-                title.setText("Marvel Super Hero Overview");
-            }
+            title.setText(topic + " Question");
 
             question.setText((CharSequence) questions.get(numQuestion).getQuestion());
             answers = QuizApp.getInstance().getAnswerList(); //t.getQuestion(numQuestion).getAnswerList();
@@ -170,13 +164,8 @@ public class Manager extends ActionBarActivity implements Serializable{
             TextView correct = (TextView) rootView.findViewById(R.id.correctAnswer);
             TextView stats = (TextView) rootView.findViewById(R.id.stats);
 
-            if(topic.equals("math")){
-                title.setText("Math Answer Summary");
-            } else if(topic.equals("physics")){
-                title.setText("Physics Answer Summary");
-            } else if(topic.equals("superhero")){
-                title.setText("Marvel Super Hero Answer Summary");
-            }
+            title.setText(topic + " Answer Summary");
+
             userResponse.setText("You answered: " + userAnswer);
             String corAns = questions.get(numQuestion).getCorrectAnswer();
             correct.setText("The answer is: " + corAns);
@@ -225,7 +214,7 @@ public class Manager extends ActionBarActivity implements Serializable{
             TextView descrip = (TextView) rootView.findViewById(R.id.overViewDescrip);
             TextView numQ = (TextView) rootView.findViewById(R.id.overViewNumQ);
 
-            title.setText(QuizApp.getInstance().getTopic());
+            title.setText(QuizApp.getInstance().getTopic() + " Overview");
             descrip.setText(QuizApp.getInstance().getDescription());
             numQ.setText("Number of questions: " + totalQuestions);
 
