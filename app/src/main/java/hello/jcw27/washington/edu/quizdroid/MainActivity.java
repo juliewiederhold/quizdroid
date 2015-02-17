@@ -31,7 +31,8 @@ public class MainActivity extends ActionBarActivity  {
 
         ListView lv = (ListView) findViewById(R.id.listView);
 
-        SimpleAdapter simpleAdpt = new SimpleAdapter(this, topicsList, android.R.layout.simple_list_item_1, new String[] {"topics"}, new int[] {android.R.id.text1});
+        SimpleAdapter simpleAdpt = new SimpleAdapter(this, topicsList, android.R.layout.simple_list_item_2,
+                new String[] {"topics", "description"}, new int[] {android.R.id.text1, android.R.id.text2});
 
         lv.setAdapter(simpleAdpt);
 
@@ -62,6 +63,9 @@ public class MainActivity extends ActionBarActivity  {
         topicsList.add(createTopic("topics", "Math"));
         topicsList.add(createTopic("topics", "Physics"));
         topicsList.add(createTopic("topics", "Marvel Super Heroes"));
+        topicsList.add(createTopic("description", "The subject everyone hates."));
+        topicsList.add(createTopic("description", "Even worse than math."));
+        topicsList.add(createTopic("description", "Making spandex cool since 1939"));
 
     }
 

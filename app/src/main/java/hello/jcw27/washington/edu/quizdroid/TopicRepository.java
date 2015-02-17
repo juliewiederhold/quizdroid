@@ -16,7 +16,7 @@ public interface TopicRepository {
 
     public ArrayList<String> getAnswerList();
 
-    public void addAnswer(String answer);
+    //public void addAnswer(String answer);
 
     public void setTopic(String topic);
 
@@ -30,7 +30,7 @@ public interface TopicRepository {
 
     public void addQuestion(Quiz question);
 
-    public void setQuestion(String question);
+    //public void setQuestion(String question);
 
     public Quiz getQuestion(int index);
 
