@@ -7,12 +7,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.SimpleAdapter;
 import android.widget.ListView;
-import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 import android.content.Intent;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
@@ -29,7 +27,6 @@ public class MainActivity extends ActionBarActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Button math = (Button) findViewById(R.id.button);
         initList();
 
         ListView lv = (ListView) findViewById(R.id.listView);
@@ -45,27 +42,32 @@ public class MainActivity extends ActionBarActivity  {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 String topic = ((TextView) view).getText().toString();
-                Intent intent = new Intent(MainActivity.this, Manager.class);
+
+                QuizApp quiz = new QuizApp();
+                //Intent intent = new Intent(MainActivity.this, Manager.class);
                 if(topic.equals("Math")){
 
-                    if (intent.resolveActivity(getPackageManager()) != null) {
+                    quiz.setCurrTopic(0);
+                   /* if (intent.resolveActivity(getPackageManager()) != null) {
                         intent.putExtra("topic", "math");
                         startActivity(intent);
                     }
 
-                    finish();
+                    finish();*/
                 } else if(topic.equals("Physics")){
-                    if (intent.resolveActivity(getPackageManager()) != null) {
+                    quiz.setCurrTopic(1);
+                   /* if (intent.resolveActivity(getPackageManager()) != null) {
                         intent.putExtra("topic", "physics");
                         startActivity(intent);
                     }
 
-                    finish();
+                    finish();*/
                 } else if(topic.equals("Marvel Super Heroes")) {
-                    if (intent.resolveActivity(getPackageManager()) != null) {
+                    quiz.setCurrTopic(2);
+                   /* if (intent.resolveActivity(getPackageManager()) != null) {
                         intent.putExtra("topic", "superhero");
                         startActivity(intent);
-                    }
+                    }*/
 
                 }
             }

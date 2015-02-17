@@ -15,26 +15,16 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
-public class Manager extends ActionBarActivity {
+public class Manager extends ActionBarActivity implements Serializable{
     public static String topic;
-    public static int numQuestions = 2;
     public static String userAnswer;
-    public static ArrayList<String> questions = new ArrayList<>();
+    public static Topic t;
+    public static ArrayList<Quiz> questions = new ArrayList<>();
     public static ArrayList<String> answers = new ArrayList<>();
-    public static ArrayList<String> correctAnswers = new ArrayList<>();
-    public static ArrayList<String> mathQuestions = new ArrayList<>();
-    public static ArrayList<String> mathQuestionsAnswers = new ArrayList<>();
-    public static ArrayList<String> physicsQuestions = new ArrayList<>();
-    public static ArrayList<String> physicsQuestionsAnswers = new ArrayList<>();
-    public static ArrayList<String> superheroQuestions = new ArrayList<>();
-    public static ArrayList<String> superheroQuestionsAnswers = new ArrayList<>();
-    public static ArrayList<String> mathCorrectAnswers = new ArrayList<>();
-    public static ArrayList<String> physicsCorrectAnswers = new ArrayList<>();
-    public static ArrayList<String> superheroCorrectAnswers = new ArrayList<>();
     public static int totalCorrect;
     public static int numQuestion;
 
@@ -43,74 +33,26 @@ public class Manager extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
 
-
-        mathQuestions.add("1 + 1 = ?");
-        mathQuestions.add("4 + 6 = ?");
-        mathQuestionsAnswers.add("2");
-
-        mathCorrectAnswers.add("2");
-        mathCorrectAnswers.add("10");
-
-        mathQuestionsAnswers.add("0");
-        mathQuestionsAnswers.add("7");
-        mathQuestionsAnswers.add("i");
-
-        mathQuestionsAnswers.add("7");
-        mathQuestionsAnswers.add("10");
-        mathQuestionsAnswers.add("12");
-        mathQuestionsAnswers.add("6");
-
-
-        physicsQuestions.add("Who came up with Newtons 3 laws of physics?");
-        physicsQuestions.add("What is the equation for velocity");
-
-        physicsCorrectAnswers.add("Newton");
-        physicsCorrectAnswers.add("v=d/t");
-
-        physicsQuestionsAnswers.add("Newton");
-        physicsQuestionsAnswers.add("Chingy");
-        physicsQuestionsAnswers.add("Edgar Allan Poe");
-        physicsQuestionsAnswers.add("None of the above");
-
-        physicsQuestionsAnswers.add("e=mc^2");
-        physicsQuestionsAnswers.add("v=d/t");
-        physicsQuestionsAnswers.add("x^2");
-        physicsQuestionsAnswers.add("Does Not Exist");
-
-        superheroQuestions.add("Which of these is a superhero?");
-        superheroQuestionsAnswers.add("Superman");
-        superheroQuestionsAnswers.add("Cartman");
-        superheroQuestionsAnswers.add("Big Bird");
-        superheroQuestionsAnswers.add("Potato Man");
-
-        superheroCorrectAnswers.add("Superman");
-        superheroCorrectAnswers.add("Regina George");
-
-        superheroQuestions.add("Which of these is not superhero?");
-        superheroQuestionsAnswers.add("Superman");
-        superheroQuestionsAnswers.add("The Flash");
-        superheroQuestionsAnswers.add("Regina George");
-        superheroQuestionsAnswers.add("Batman");
-
         Intent parentCall = getIntent();
         topic = parentCall.getStringExtra("topic");
 
         if(topic.equals("math")){
-            questions = mathQuestions;
-            answers = mathQuestionsAnswers;
-            correctAnswers = mathCorrectAnswers;
+
         } else if(topic.equals("physics")){
-            questions = physicsQuestions;
-            answers = physicsQuestionsAnswers;
-            correctAnswers = physicsCorrectAnswers;
+            t = new Topic("Physics", "Physics Overview description goes right here. Wow this is an excellent overview. PHYSICS!");
+            t.addQuestion(new Quiz("Who came up with Newtons 3 laws of physics?",
+                    "Newton", "Chingy", "Edgar Allen Poe", "None of the above"));
+            t.addQuestion(new Quiz("What is the equation for velocity", "v=d/t", "e=c^2", "x^2", "Does not Exist"));
         } else if(topic.equals("superhero")){
-            questions = superheroQuestions;
-            answers = superheroQuestionsAnswers;
-            correctAnswers = superheroCorrectAnswers;
+            t = new Topic("Marvel Super Heroes", "Marvel Super Hero Overview description goes right here. Wow this is an excellent overview. SUPERHERO!");
+            t.addQuestion(new Quiz("Which of these is a superhero?", "Superman", "Cartman", "Big Bird", "Potato Man"));
+            t.addQuestion(new Quiz("Which of these is not superhero?", "Regina George", "The Flash", "Superman", "BATMAN"));
         }
 
-        totalCorrect = 0;
         numQuestion = 0;
+        totalCorrect = 0;
+        questions = t.getQuestionList();
+        answers = t.getQuestion(numQuestion).getAnswerList();
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction =
@@ -130,41 +72,26 @@ public class Manager extends ActionBarActivity {
         switch (view.getId()) {
             case R.id.answer1:
                 if (checked) {
-                    if (numQuestion == 0)
-                        userAnswer = answers.get(0);
-                    else {
-                        userAnswer = answers.get(4);
-                    }
-
+                    userAnswer = answers.get(0);
                 }
                 break;
             case R.id.answer2:
                 if (checked) {
-                    if (numQuestion == 0)
-                        userAnswer = answers.get(1);
-                    else
-                        userAnswer = answers.get(5);
+                    userAnswer = answers.get(1);
                 }
                 break;
             case R.id.answer3:
                 if (checked) {
-                    if (numQuestion == 0)
-                        userAnswer = answers.get(2);
-                    else
-                        userAnswer = answers.get(6);
+                    userAnswer = answers.get(2);
                 }
                 break;
             case R.id.answer4:
                 if (checked) {
-                    if (numQuestion == 0)
-                        userAnswer = answers.get(3);
-                    else
-                        userAnswer = answers.get(7);
+                    userAnswer = answers.get(3);
                 }
                 break;
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -188,9 +115,6 @@ public class Manager extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
     public static class Questions extends Fragment {
 
         public Questions() {
@@ -215,25 +139,19 @@ public class Manager extends ActionBarActivity {
                 title.setText("Marvel Super Hero Overview");
             }
 
-            question.setText(questions.get(numQuestion));
-            if(numQuestion == 0){
-                answer1.setText(answers.get(0));
-                answer2.setText(answers.get(1));
-                answer3.setText(answers.get(2));
-                answer4.setText(answers.get(3));
-            } else {
-                answer1.setText(answers.get(4));
-                answer2.setText(answers.get(5));
-                answer3.setText(answers.get(6));
-                answer4.setText(answers.get(7));
-            }
+            question.setText((CharSequence) questions.get(numQuestion).getQuestion());
+            answers = t.getQuestion(numQuestion).getAnswerList();
+            answer1.setText(answers.get(0));
+            answer2.setText(answers.get(1));
+            answer3.setText(answers.get(2));
+            answer4.setText(answers.get(3));
 
             Button submit = (Button) rootView.findViewById(R.id.submitButton);
             final RadioGroup rb = (RadioGroup) rootView.findViewById(R.id.radiogroup);
             submit.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v) {
                     if (rb.getCheckedRadioButtonId() > 0) {
-                        if (correctAnswers.get(numQuestion).equals(userAnswer)) {
+                        if (questions.get(numQuestion).getCorrectAnswer().equals(userAnswer)) {
                             totalCorrect++;
                         }
                         FragmentTransaction transaction = getFragmentManager().beginTransaction().replace(R.id.container, new BetweenQuestions());
@@ -273,7 +191,7 @@ public class Manager extends ActionBarActivity {
                 title.setText("Marvel Super Hero Answer Summary");
             }
             userResponse.setText("You answered: " + userAnswer);
-            String corAns = correctAnswers.get(numQuestion);
+            String corAns = questions.get(numQuestion).getCorrectAnswer();
             correct.setText("The answer is: " + corAns);
             stats.setText("You have answered " + totalCorrect + " of " + questions.size() + " correct");
 
@@ -318,19 +236,10 @@ public class Manager extends ActionBarActivity {
             TextView descrip = (TextView) rootView.findViewById(R.id.overViewDescrip);
             TextView numQ = (TextView) rootView.findViewById(R.id.overViewNumQ);
 
-            if(topic.equals("math")){
-                title.setText("Math Overview");
-                descrip.setText("Math Overview description goes right here. Wow this is an excellent overview. MATH!");
-                numQ.setText("Number of questions: " + numQuestions);
-            } else if(topic.equals("physics")){
-                title.setText("Physics Overview");
-                descrip.setText("Physics Overview description goes right here. Wow this is an excellent overview. PHYSICS!");
-                numQ.setText("Number of questions: " + numQuestions);
-            } else if(topic.equals("superhero")){
-                title.setText("Marvel Super Hero Overview");
-                descrip.setText("Marvel Superhero Overview description goes right here. Wow this is an excellent overview. SUPERHERO!");
-                numQ.setText("Number of questions: " + numQuestions);
-            }
+            title.setText(t.getTopic());
+            descrip.setText(t.getDescription());
+            numQ.setText("Number of questions: " + numQuestion);
+
             Button beginButton = (Button) rootView.findViewById(R.id.beginButton);
             beginButton.setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v){
