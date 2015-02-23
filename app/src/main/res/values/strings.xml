@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Quizdroid</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Preferences</string>
     <string name="begin">Begin</string>
     <string name="title_activity_between_question">Quizdroid</string>
     <string name="title_activity_topic_overview">Quizdroid</string>
@@ -12,5 +12,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_fragment_manager">FragmentManager</string>
+    <string name="title_activity_preferences">Preferences</string>
+    <string name="duration">Frequency to Check for Updates</string>
+    <string name="url">URL</string>
+    <string name="title_activity_alarm_receiver"></string>
 
 </resources>
